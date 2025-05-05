@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-    username: { type: String, require: true, index: true },
-    email: { type: String, require: true, index: true },
-    password: { type: String, require: true },
-    roles: { enum: ["admin", "user"]},
-
     displayName: { type: String, require: true },
     bio: { type: String, maxlength: 160 },
     avatar: { type: String, default: "url" },
@@ -20,4 +15,4 @@ const UserSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Profile', UserSchema);

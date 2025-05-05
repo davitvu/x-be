@@ -1,21 +1,28 @@
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
+const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
-const connectDB = require("./config/db")
+const connectDB = require("./config/db");
+const authRoute = require("./routes/auth");
 
-const app = express();
+dotenv.config();
 const port = process.env.PORT
+const app = express();
 
 connectDB();
 
-app.use(cors());
+app.use(express.json());
+app.use(cors({
+    origin: process.env.FRONTEND_URL || '*', // Cấu hình CORS
+    credentials: true
+}));
 app.use(cookieParser());
-app.use(express.json);
 
+// ROUTES
 app.get("/", (req, res) => {
-    res.send("Hello");
-})
+    res.send("Hello World");
+});
+app.use("/api/v1/auth", authRoute);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`)
