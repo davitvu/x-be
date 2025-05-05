@@ -1,8 +1,8 @@
 {
-  "name": "user-service",
+  "name": "follower-service",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
     "dev": "nodemon index.js",
@@ -13,12 +13,9 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "bcryptjs": "^3.0.2",
-    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.14.1"
   },
   "devDependencies": {

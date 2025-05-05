@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const connectDB = async () => {
     try {
-        const mongoURI = process.env.MONGO_URI;
+        const mongoURI = process.env.MONGODB_URI;
         if (!mongoURI) {
             console.error('Lỗi: Biến môi trường MONGO_URI chưa được đặt.');
             process.exit(1);

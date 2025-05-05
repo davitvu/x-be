@@ -1,34 +1,22 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const connectDB = require('./config/db');
-const authRoutes = require('./routes/auth.routes');
+const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
+const cookieParser = require("cookie-parser");
+const connectDB = require("./config/db")
+
+const app = express();
+const port = process.env.PORT
 
 connectDB();
 
-const app = express();
-
 app.use(cors());
-app.use(express.json());
+app.use(cookieParser());
+app.use(express.json);
 
-// Routes
-app.use('/api/v1/auth', authRoutes);
+app.get("/", (req, res) => {
+    res.send("Hello");
+})
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-    console.log(err);
-    res.status(err.statusCode || 500).json({
-        success: false,
-        message: err.message || 'Internal server error',
-    });
-});
-
-const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => {
-    console.log(`User Service is running on port ${PORT}`);
-});
-
-process.on('unhandledRejection', (err, promise) => {
-    console.log(`Lỗi Unhandled Rejection: ${err.message}`);
-    server.close(() => process.exit(1));
-});
+app.listen(port, () => {
+    console.log(`Server is running on port: ${port}`)
+})
